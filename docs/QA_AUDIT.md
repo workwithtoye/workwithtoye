@@ -1,4 +1,6 @@
 # QA Audit Report
+
+> **Note:** This document reflects the audit state as of May 2026. Subsequent refactoring has addressed many of these findings.
 **Date:** 2026-05-20
 **Project:** Olutoyese Oyedepo Portfolio
 

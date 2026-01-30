@@ -11,12 +11,23 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, index }) => {
   return (
     <ScrollReveal delay={index * 100}>
-      <div onClick={() => onClick(project)} className="group cursor-pointer">
+      <div
+        onClick={() => onClick(project)}
+        className="group cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white rounded-lg"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick(project);
+          }
+        }}
+      >
         <div className="overflow-hidden bg-gray-100 dark:bg-white/5 mb-6 aspect-[16/10] relative">
           <div className="absolute inset-0 bg-gray-900/5 dark:bg-white/5 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-          <img 
-            src={project.image} 
-            alt={project.title} 
+          <img
+            src={project.image}
+            alt={project.title}
             className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 filter grayscale group-hover:grayscale-0 opacity-90 group-hover:opacity-100"
           />
         </div>

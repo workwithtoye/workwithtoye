@@ -1,5 +1,7 @@
 # Gap Analysis: Zenith vs. Reference (cnewton.org)
 
+> **Note:** This is a historical document from the initial project audit (Oct 2023). Many items listed here have since been addressed. Please refer to `ACTION_ITEMS.md` for current status.
+
 **Document Date:** October 2023
 **Status:** Analysis Phase
 
