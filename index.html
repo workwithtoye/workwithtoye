@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olutoyese Oyedepo — Portfolio</title>
+    <meta name="description" content="Olutoyese Oyedepo is a Content Strategist and UX Designer based in Dublin, specializing in persuasion psychology, data-driven user experiences, and information architecture.">
+    <meta name="keywords" content="Content Strategy, UX Design, Dublin, Persuasion Psychology, Information Architecture, Content Designer, Portfolio">
+    <meta name="author" content="Olutoyese Oyedepo">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Olutoyese Oyedepo — Content Strategist & UX Designer">
+    <meta property="og:description" content="Driving engagement through strategic content, persuasion psychology, and data-driven user experiences.">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Olutoyese Oyedepo — Portfolio">
+    <meta name="twitter:description" content="Content Strategist and UX Designer based in Dublin.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <script>
+      // Initialize theme early to prevent flash
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+    <style>
+        :root {
+            --bg-light: #ffffff;
+            --bg-dark: #0a0a0a;
+            --text-light: #111111;
+            --text-dark: #eeeeee;
+        }
+        html {
+            scroll-padding-top: 100px; /* Ensures fixed header doesn't cover section titles */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .serif {
+            font-family: 'Newsreader', serif;
+        }
+        .mono {
+            font-family: 'Geist Mono', monospace;
+        }
+        .dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-light);
+        }
+        .border-subtle {
+            border-color: rgba(0,0,0,0.08);
+        }
+        .dark .border-subtle {
+            border-color: rgba(255,255,255,0.08);
+        }
+        /* Custom scrollbar for terminal feel */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0px; }
+        .dark ::-webkit-scrollbar-thumb { background: #555; }
+
+        /* Utilities */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+        "react": "https://esm.sh/react@^19.2.3",
+        "react/": "https://esm.sh/react@^19.2.3/"
+      }
+    }
+    </script>
+</head>
+<body class="selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
+    <div id="root"></div>
+</body>
+</html>
