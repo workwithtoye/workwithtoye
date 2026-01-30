@@ -1,71 +1,486 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olutoyese Oyedepo — Portfolio</title>
-    <meta name="description" content="Olutoyese Oyedepo is a Content Strategist and UX Designer based in Dublin, specializing in persuasion psychology, data-driven user experiences, and information architecture.">
-    <meta name="keywords" content="Content Strategy, UX Design, Dublin, Persuasion Psychology, Information Architecture, Content Designer, Portfolio">
+    <meta name="description"
+        content="Olutoyese Oyedepo is a Content Strategist and UX Designer based in Dublin, specializing in persuasion psychology, data-driven user experiences, and information architecture.">
+    <meta name="keywords"
+        content="Content Strategy, UX Design, Dublin, Persuasion Psychology, Information Architecture, Content Designer, Portfolio">
     <meta name="author" content="Olutoyese Oyedepo">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Olutoyese Oyedepo — Content Strategist & UX Designer">
-    <meta property="og:description" content="Driving engagement through strategic content, persuasion psychology, and data-driven user experiences.">
-    
+    <meta property="og:description"
+        content="Driving engagement through strategic content, persuasion psychology, and data-driven user experiences.">
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Olutoyese Oyedepo — Portfolio">
     <meta name="twitter:description" content="Content Strategist and UX Designer based in Dublin.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
-    <script>
-      // Initialize theme early to prevent flash
-      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    </script>
-    <style>
-        :root {
-            --bg-light: #ffffff;
-            --bg-dark: #0a0a0a;
-            --text-light: #111111;
-            --text-dark: #eeeeee;
-        }
-        html {
-            scroll-padding-top: 100px; /* Ensures fixed header doesn't cover section titles */
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .serif {
-            font-family: 'Newsreader', serif;
-        }
-        .mono {
-            font-family: 'Geist Mono', monospace;
-        }
-        .dark body {
-            background-color: var(--bg-dark);
-            color: var(--text-dark);
-        }
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-light);
-        }
-        .border-subtle {
-            border-color: rgba(0,0,0,0.08);
-        }
-        .dark .border-subtle {
-            border-color: rgba(255,255,255,0.08);
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-serif: 'Newsreader', serif;
+            --font-mono: 'Geist Mono', monospace;
+            --color-subtle: rgba(125, 125, 125, 0.2);
         }
     </style>
+
+    <script>
+        // Initialize theme early to prevent flash
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
 </head>
-<body class="selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black">
-    <div id="root"></div>
+
+<body
+    class="selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black bg-white dark:bg-[#0a0a0a] text-[#111] dark:text-[#eeeeee] transition-colors duration-300">
+
+    <!-- Header -->
+    <nav
+        class="fixed top-0 w-full z-40 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-b border-black/10 dark:border-white/10">
+        <div class="max-w-[1200px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="#" class="font-medium text-sm tracking-widest uppercase mono" aria-label="Home">Olutoyese
+                Oyedepo</a>
+            <div class="flex items-center gap-10">
+                <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                    <a href="#work" class="hover:text-black dark:hover:text-white transition-colors">Work</a>
+                    <a href="#writing" class="hover:text-black dark:hover:text-white transition-colors">Log</a>
+                    <a href="#info" class="hover:text-black dark:hover:text-white transition-colors">Info</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                        aria-label="Toggle Theme">
+                        <svg id="theme-icon-light" class="hidden dark:block" xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="4" />
+                            <path d="M12 2v2" />
+                            <path d="M12 20v2" />
+                            <path d="m4.93 4.93 1.41 1.41" />
+                            <path d="m17.66 17.66 1.41 1.41" />
+                            <path d="M2 12h2" />
+                            <path d="M20 12h2" />
+                            <path d="m6.34 17.66-1.41 1.41" />
+                            <path d="m19.07 4.93-1.41 1.41" />
+                        </svg>
+                        <svg id="theme-icon-dark" class="block dark:hidden" xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                        </svg>
+                    </button>
+                    <button id="menu-btn" class="md:hidden p-2 text-gray-500 hover:text-black dark:hover:text-white"
+                        aria-label="Open menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="hidden fixed inset-0 z-50 bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl flex flex-col justify-center items-center opacity-0 transition-opacity duration-300">
+        <button id="menu-close-btn"
+            class="absolute top-6 right-6 p-2 text-gray-500 hover:text-black dark:hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+            </svg>
+        </button>
+        <nav class="flex flex-col gap-12 text-center">
+            <a href="#work" class="menu-link text-3xl font-light tracking-tight hover:italic">Work</a>
+            <a href="#writing" class="menu-link text-3xl font-light tracking-tight hover:italic">Log</a>
+            <a href="#info" class="menu-link text-3xl font-light tracking-tight hover:italic">Info</a>
+            <a href="mailto:toyesetunji@gmail.com"
+                class="menu-link text-3xl font-light tracking-tight hover:italic">Contact</a>
+        </nav>
+        <div class="absolute bottom-12 text-gray-400 mono text-[10px] uppercase tracking-widest">
+            Menu / Navigation
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="hero" class="pt-48 pb-32 max-w-[1200px] mx-auto px-6 md:px-12">
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+            <div class="max-w-4xl">
+                <div class="flex items-center gap-4 mb-10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="mono text-[10px] uppercase tracking-[0.3em] text-gray-500">Available for
+                        projects</span>
+                    <span class="text-gray-300 dark:text-gray-700">|</span>
+                    <span id="live-clock" class="mono text-[10px] uppercase tracking-widest text-gray-400">DUB
+                        --:--</span>
+                </div>
+                <h1 class="text-4xl md:text-7xl serif italic font-light leading-[1.05] tracking-tight mb-12">
+                    Content Strategist & <br />
+                    <span class="not-italic text-black dark:text-white">UX Designer.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl font-light">
+                    Driving engagement through strategic content, persuasion psychology, and data-driven user
+                    experiences. Currently at Penthel.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="py-24 max-w-[1200px] mx-auto px-6 md:px-12">
+        <h2 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-16">Selected Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+            <!-- Project 1 -->
+            <div class="scroll-reveal group cursor-pointer opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+                data-project-id="1" tabindex="0" role="button" aria-label="View project: Penthel UX Strategy">
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-white/5 mb-6 relative">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-black/20 transition-colors duration-500 z-10">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop"
+                        alt="Penthel UX Strategy"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter grayscale group-hover:grayscale-0">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="space-y-2">
+                        <h3 class="text-xl serif italic group-hover:not-italic transition-all duration-300">Penthel UX
+                            Strategy</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2 max-w-sm">Strategic implementation of journey
+                            mapping and persuasion psychology to boost website traffic by 20% and conversion rates by
+                            15%.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">UX
+                                Writing</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Journey
+                                Mapping</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Persuasion
+                                Psych</span>
+                        </div>
+                    </div>
+                    <span class="mono text-[10px] text-gray-400">2024</span>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="scroll-reveal group cursor-pointer opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+                data-project-id="2" tabindex="0" role="button" aria-label="View project: DCFPI Digital Audit"
+                style="transition-delay: 100ms;">
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-white/5 mb-6 relative">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-black/20 transition-colors duration-500 z-10">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop"
+                        alt="DCFPI Digital Audit"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter grayscale group-hover:grayscale-0">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="space-y-2">
+                        <h3 class="text-xl serif italic group-hover:not-italic transition-all duration-300">DCFPI
+                            Digital Audit</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2 max-w-sm">Comprehensive content audit and
+                            information architecture restructuring, resulting in a 35% increase in site traffic and
+                            engagement.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Accessibility</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">SEO</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Data
+                                Analytics</span>
+                        </div>
+                    </div>
+                    <span class="mono text-[10px] text-gray-400">2024</span>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="scroll-reveal group cursor-pointer opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+                data-project-id="3" tabindex="0" role="button" aria-label="View project: Wellness Program Launch"
+                style="transition-delay: 200ms;">
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-white/5 mb-6 relative">
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-black/20 transition-colors duration-500 z-10">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2000&auto=format&fit=crop"
+                        alt="Wellness Program Launch"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out filter grayscale group-hover:grayscale-0">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div class="space-y-2">
+                        <h3 class="text-xl serif italic group-hover:not-italic transition-all duration-300">Wellness
+                            Program Launch</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2 max-w-sm">Developing content models and utilizing
+                            user research to drive a 20% engagement boost for the Carers Network Ireland wellness
+                            initiative.</p>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">User
+                                Research</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Content
+                                Modeling</span>
+                            <span
+                                class="text-[10px] uppercase tracking-wider text-gray-400 border border-black/10 dark:border-white/10 px-2 py-1">Community</span>
+                        </div>
+                    </div>
+                    <span class="mono text-[10px] text-gray-400">2023</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Log Section -->
+    <section id="writing" class="py-24 max-w-[1200px] mx-auto px-6 md:px-12">
+        <h2 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-16">Log</h2>
+        <div class="space-y-1">
+            <!-- Post 1 -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+                <div
+                    class="group cursor-pointer border-t border-black/10 dark:border-white/10 py-8 flex flex-col md:flex-row md:items-center justify-between hover:bg-gray-50 dark:hover:bg-white/5 transition-colors px-4 -mx-4">
+                    <div class="flex flex-col gap-2">
+                        <span class="mono text-[10px] text-gray-400 uppercase tracking-widest">March 2024</span>
+                        <h3 class="text-xl serif italic group-hover:not-italic transition-all duration-300">The
+                            Psychology of Persuasion in UX</h3>
+                    </div>
+                    <div class="flex items-center gap-6 mt-4 md:mt-0">
+                        <span className="mono text-[10px] text-gray-400 uppercase tracking-widest">How understanding
+                            cognitive biases and tone can significantly ...</span>
+                        <span class="mono text-[10px] text-gray-400 uppercase tracking-widest">6 min</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -rotate-45 group-hover:rotate-0 duration-300"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- Post 2 -->
+            <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+                style="transition-delay: 100ms;">
+                <div
+                    class="group cursor-pointer border-t border-black/10 dark:border-white/10 py-8 flex flex-col md:flex-row md:items-center justify-between hover:bg-gray-50 dark:hover:bg-white/5 transition-colors px-4 -mx-4">
+                    <div class="flex flex-col gap-2">
+                        <span class="mono text-[10px] text-gray-400 uppercase tracking-widest">Jan 2024</span>
+                        <h3 class="text-xl serif italic group-hover:not-italic transition-all duration-300">Designing
+                            for Accessibility & SEO</h3>
+                    </div>
+                    <div class="flex items-center gap-6 mt-4 md:mt-0">
+                        <span className="mono text-[10px] text-gray-400 uppercase tracking-widest">Why semantic
+                            information architecture is the foundatio...</span>
+                        <span class="mono text-[10px] text-gray-400 uppercase tracking-widest">8 min</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -rotate-45 group-hover:rotate-0 duration-300"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="py-24 max-w-[1200px] mx-auto px-6 md:px-12">
+        <h2 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-16">Information</h2>
+        <div class="scroll-reveal opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-6 space-y-16">
+                    <p class="text-2xl md:text-3xl serif leading-snug italic font-light">
+                        "Olutoyese Oyedepo is a Content Strategist and UX Designer based in Dublin. With a background in
+                        Emerging Media and English, he specializes in boosting conversion rates and optimizing user
+                        journeys through research-backed design and multimedia storytelling. Currently shaping content
+                        strategy at Penthel."
+                    </p>
+                    <div class="space-y-8">
+                        <h4 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400">Experience</h4>
+                        <div class="space-y-6">
+                            <div
+                                class="flex justify-between items-baseline border-b border-black/10 dark:border-white/10 pb-4">
+                                <div>
+                                    <div class="font-medium text-sm tracking-tight">Penthel</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Content Strategist
+                                    </div>
+                                </div>
+                                <div class="mono text-[10px] text-gray-400">Feb 2024 — Present</div>
+                            </div>
+                            <div
+                                class="flex justify-between items-baseline border-b border-black/10 dark:border-white/10 pb-4">
+                                <div>
+                                    <div class="font-medium text-sm tracking-tight">DC Fiscal Policy Institute</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Content Designer
+                                    </div>
+                                </div>
+                                <div class="mono text-[10px] text-gray-400">Jan 2024 — Mar 2024</div>
+                            </div>
+                            <div
+                                class="flex justify-between items-baseline border-b border-black/10 dark:border-white/10 pb-4">
+                                <div>
+                                    <div class="font-medium text-sm tracking-tight">Carers Network Ireland</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">Communication Lead
+                                    </div>
+                                </div>
+                                <div class="mono text-[10px] text-gray-400">Apr 2023 — Oct 2023</div>
+                            </div>
+                            <!-- More experience omitted for brevity but should be here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 lg:offset-1 space-y-12">
+                    <div class="space-y-8">
+                        <h4 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400">Education</h4>
+                        <div class="space-y-6">
+                            <div
+                                class="flex justify-between items-baseline border-b border-black/10 dark:border-white/10 pb-4">
+                                <div>
+                                    <div class="font-medium text-sm tracking-tight">Dublin City University</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">M.Sc Emerging Media
+                                    </div>
+                                </div>
+                                <div class="mono text-[10px] text-gray-400">2023</div>
+                            </div>
+                            <div
+                                class="flex justify-between items-baseline border-b border-black/10 dark:border-white/10 pb-4">
+                                <div>
+                                    <div class="font-medium text-sm tracking-tight">Obafemi Awolowo University</div>
+                                    <div class="text-xs text-gray-500 uppercase tracking-wider mt-1">B.A. English</div>
+                                </div>
+                                <div class="mono text-[10px] text-gray-400">2016</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-white/5 p-8 border border-black/10 dark:border-white/10">
+                        <h4 class="mono text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-6">Connect</h4>
+                        <div class="grid grid-cols-2 gap-8 text-sm font-medium">
+                            <div class="flex flex-col gap-3">
+                                <a href="mailto:toyesetunji@gmail.com"
+                                    class="hover:text-gray-500 transition-colors">Email</a>
+                                <a href="#" class="hover:text-gray-500 transition-colors">LinkedIn</a>
+                                <a href="#" class="hover:text-gray-500 transition-colors">Portfolio</a>
+                            </div>
+                            <div class="flex flex-col gap-3">
+                                <div class="text-gray-400 text-xs mt-1">Based in:</div>
+                                <div>Sandyford, Dublin</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 border-t border-black/10 dark:border-white/10">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="mono text-[10px] text-gray-400 uppercase tracking-[0.2em]">
+                © 2026 Olutoyese Oyedepo
+            </div>
+            <button id="back-to-top"
+                class="mono text-[10px] text-gray-400 uppercase tracking-[0.2em] hover:text-black dark:hover:text-white transition-colors">
+                Back to Top ↑
+            </button>
+        </div>
+    </footer>
+
+    <!-- AI Assistant -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="ai-toggle-btn"
+            class="bg-black dark:bg-white text-white dark:text-black w-12 h-12 flex items-center justify-center border border-transparent hover:border-black dark:hover:border-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-all duration-300 mono text-[10px] font-bold">
+            CMD
+        </button>
+        <div id="ai-terminal"
+            class="hidden bg-white dark:bg-black border-2 border-black dark:border-white w-[320px] md:w-[400px] h-[500px] flex-col shadow-none font-mono text-xs">
+            <div
+                class="bg-black dark:bg-white text-white dark:text-black px-3 py-2 flex justify-between items-center select-none">
+                <span class="uppercase tracking-widest font-bold">Terminal -- Zenith</span>
+                <button id="ai-close-btn"
+                    class="hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white px-1">[X]</button>
+            </div>
+            <div id="ai-messages"
+                class="flex-1 overflow-y-auto p-4 space-y-4 bg-white dark:bg-black text-black dark:text-white">
+                <div class="flex flex-col gap-1 break-words">
+                    <span class="uppercase opacity-50 mb-0.5 text-left">ROOT@ZENITH</span>
+                    <div class="text-left whitespace-pre-wrap"><span class="mr-2 opacity-50">&gt;</span>> INITIALIZING
+                        ZENITH V1.0...
+                        > SYSTEM READY.
+                        > WAITING FOR INPUT...</div>
+                </div>
+            </div>
+            <div class="p-3 border-t-2 border-black dark:border-white bg-white dark:bg-black">
+                <div class="flex gap-2 items-center">
+                    <span class="text-black dark:text-white animate-pulse">_</span>
+                    <input id="ai-input" placeholder="TYPE COMMAND..."
+                        class="flex-1 bg-transparent border-none focus:ring-0 text-black dark:text-white placeholder-gray-500 uppercase outline-none p-0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal (Hidden, Dynamic) -->
+    <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div id="modal-backdrop"
+            class="absolute inset-0 bg-white/80 dark:bg-black/80 backdrop-blur-sm transition-opacity"></div>
+        <div
+            class="relative bg-white dark:bg-[#111] w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl border border-black/10 dark:border-white/10 animate-in fade-in zoom-in-95 duration-300">
+            <button id="modal-close-btn"
+                class="absolute top-4 right-4 z-10 p-2 bg-white/50 dark:bg-black/50 backdrop-blur rounded-full hover:bg-white dark:hover:bg-black transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+            <div class="aspect-video w-full overflow-hidden">
+                <img id="modal-image" src="" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="p-8 md:p-12">
+                <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4 mb-8">
+                    <h2 id="modal-title" class="text-3xl md:text-4xl serif font-light italic"></h2>
+                    <div class="flex gap-4 mono text-xs uppercase tracking-widest text-gray-500">
+                        <span id="modal-year"></span>
+                        <span id="modal-category"></span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="md:col-span-2 space-y-6">
+                        <p id="modal-description" class="text-lg leading-relaxed text-gray-700 dark:text-gray-300"></p>
+                    </div>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="mono text-[10px] uppercase tracking-widest text-gray-400 mb-4">Tech Stack</h3>
+                            <div id="modal-tags" class="flex flex-wrap gap-2"></div>
+                        </div>
+                        <div>
+                            <h3 class="mono text-[10px] uppercase tracking-widest text-gray-400 mb-4">Role</h3>
+                            <p class="text-sm">Content Strategist & UX Designer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>

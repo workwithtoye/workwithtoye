@@ -15,39 +15,44 @@ A React-based personal portfolio website built with Vite and Tailwind CSS. It fe
 
 ## Run Locally
 
-**Prerequisites:** Node.js (v18+)
+**Prerequisites:** Node.js (v20+), Python 3 (optional, for local server)
 
-1.  **Install dependencies:**
+1.  **Installation:**
     ```bash
     npm install
     ```
-2.  **Set up Environment:**
-    Create a `.env.local` file and add your Gemini API key:
-    ```env
-    VITE_GEMINI_API_KEY=your_api_key_here
-    ```
-3.  **Run the app:**
+
+2.  **Build Project:**
+    Generates the `dist/` folder for deployment.
     ```bash
-    npm run dev
+    npm run build
     ```
-    Open the localhost URL provided in the terminal.
 
-## Architecture
+3.  **Run Locally:**
+    To view the site (development or build):
+    ```bash
+    # Run dev (root)
+    npm start
+    
+    # Run build artifact
+    npm run serve:dist
+    ```
 
--   **`src/`:** Main application source code.
--   **`components/`:** Reusable UI components (Header, Hero, ProjectCard, etc.).
--   **`docs/`:** Project documentation and audit logs.
--   **`dist/`:** Production build output.
+4.  **AI Assistant Configuration:**
+    The AI Assistant requires a valid Gemini API key.
+    - Open `script.js`
+    - Find `const GEMINI_API_KEY = "";`
+    - Insert your key (Do not commit this!).
 
 ## Deployment
 
 This repository is configured to deploy automatically to GitHub Pages using GitHub Actions.
 
 -   **Workflow:** `.github/workflows/deploy.yml`
+-   **Method:** Standard `npm run build` -> `dist/` deployment
 -   **Trigger:** Push to `main` branch
--   **URL:** `https://<your-username>.github.io`
 
 ### Setup
 1.  Go to repository **Settings** > **Pages**
 2.  Under "Build and deployment", ensure Source is set to **GitHub Actions**.
-3.  Push changes to `main`.
+3.  Push changes to `main`. The site will go live automatically.
